@@ -1,4 +1,77 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    background-color: black;
+
+}
 .email{
     font-size: 20px;
     color: red;
+    text-align: center;
+    width: 300px;
+    height: auto;
+    background-color: rgba(255, 0, 0, 0.247);
+    border-radius: 10px;
+}
+.name{
+    background-color: rgba(3, 255, 57, 0.404);
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 40px;
+    color: blue;
+}
+.picture{
+    width: 200px;
+    height: 200px;
+    align-items: center;
+
+    border-radius: 50%;
+    border: 2px solid black;
+}
+.cell{
+    font-size: 20px;
+    color: red;
+    text-align: center;
+    width: 300px;
+    height: auto;
+    background-color: rgba(255, 0, 0, 0.247);
+    border-radius: 10px;
+}
+.country{
+    font-size: 20px;
+    color: rgb(208, 255, 0);
+    text-align: center;
+    width: 300px;
+    height: auto;
+    background-color: rgba(255, 0, 200, 0.247);
+    border-radius: 10px;
+}
+.state{
+    font-size: 20px;
+    color: rgb(238, 255, 0);
+    text-align: center;
+    width: 300px;
+    height: auto;
+    background-color: rgba(98, 0, 255, 0.247);
+    border-radius: 10px;
+}
+.street{
+    font-size: 20px;
+    color: rgb(225, 0, 255);
+    text-align: center;
+    width: 300px;
+    height: auto;
+    background-color: rgba(233, 240, 233, 0.247);
+    border-radius: 10px;
+}
+.postcode{
+    font-size: 20px;
+    color: rgb(0, 255, 221);
+    text-align: center;
+    width: 300px;
+    height: auto;
+    background-color: rgba(255, 255, 255, 0.247);
+    border-radius: 10px;
 }
