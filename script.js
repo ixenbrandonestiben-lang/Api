@@ -42,6 +42,9 @@ fetch(url)
         const div_principal3 = document.createElement("div");
         const nameElement3 = document.createElement("img");
         nameElement3.textContent = picture;
+        nameElement3.className = "picture";
+        nameElement3.src = picture;
+        
     
         div_principal3.appendChild(nameElement3);
         document.body.appendChild(div_principal3);
