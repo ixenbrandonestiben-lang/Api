@@ -7,252 +7,136 @@ async function llamadaApi() {
         const data = await api.json();
         console.log(data);
 
-        function crearTarjetaUsuario(user) {
-            const card = document.createElement("div");
-            card.className = "user-card";
+        const user = data.results[0];
+        const name = `${user.name.first} ${user.name.last}`;
+        const email = user.email;
+        const picture = user.picture.large;
+        const cell = user.cell;
+        const city = user.location.city;
+        const country = user.location.country;
+        const state = user.location.state;
+        const street = `${user.location.street.number} ${user.location.street.name}`;
+        const postcode = user.location.postcode;
 
-            const picture = document.createElement("img");
-            picture.src = user.picture.large;
-            picture.alt = "User Picture";
-            picture.className = "picture";
-            card.appendChild(picture);
+        const div_principal1 = document.createElement("div");
+        const nameElement1 = document.createElement("p");
+        nameElement1.textContent = name;
+        nameElement1.className = "name";
+        nameElement1.id = "1";
+        div_principal1.appendChild(nameElement1);
+        document.body.appendChild(div_principal1);
 
-            const nameElement = document.createElement("p");
-            nameElement.textContent = `${user.name.first} ${user.name.last}`;
-            nameElement.className = "name";
-            card.appendChild(nameElement);
+        const div_principal2 = document.createElement("div");
+        const nameElement2 = document.createElement("p");
+        nameElement2.textContent = email;
+        nameElement2.className = "email";
+        nameElement2.id = "2";
+        div_principal2.appendChild(nameElement2);
+        document.body.appendChild(div_principal2);
 
-            const email = document.createElement("p");
-            email.textContent = user.email;
-            email.className = "email";
-            card.appendChild(email);
-
-            const cell = document.createElement("p")
-            cell.textContent = user.cell
-            cell.className = "cell"
-            card.appendChild(cell)
-
-            const city = document.createElement("p")
-            city.textContent = `${user.location.city}, ${user.location.country}`
-            city.className = city
-            city.appendChild(city)
-            card.appendChild(city)
-
-            const street = document.createElement("p")
-            street.textContent = user.street
-            street.className = "street"
-            card.appendChild(street)
-
-            const postcode = document.createElement("p")
-            postcode.textContent = user.postcode
-            postcode.className = "postcode"
-            card.appendChild(postcode)
+        const div_principal3 = document.createElement("div");
+        const nameElement3 = document.createElement("img");
+        nameElement3.textContent = picture;
+        nameElement3.className = "picture";
+        nameElement3.src = picture;
+        nameElement3.alt = "User Picture";
+        nameElement3.id = "3";
+        div_principal3.appendChild(nameElement3);
+        document.body.appendChild(div_principal3);
 
 
+        const div_principal4 = document.createElement("div");
+        const nameElement4 = document.createElement("p");
+        nameElement4.textContent = cell;
+        nameElement4.className = "cell";
+        nameElement4.id = "4";
+        div_principal4.appendChild(nameElement4);
+        document.body.appendChild(div_principal4);
 
-            // falta: cell, city + country, street, postcode
 
-            document.body.appendChild(card);
+        const div_principal5 = document.createElement("div");
+        const nameElement5 = document.createElement("p");
+        nameElement5.textContent = city;
+        nameElement5.className = "city";
+        nameElement5.id = "5";
+        div_principal5.appendChild(nameElement5);
+        document.body.appendChild(div_principal5);
+
+        const div_principal6 = document.createElement("div");
+        const nameElement6 = document.createElement("p");
+        nameElement6.textContent = country;
+        nameElement6.className = "country";
+        nameElement6.id = "6";
+        div_principal6.appendChild(nameElement6);
+        document.body.appendChild(div_principal6);
+
+        const div_principal7 = document.createElement("div");
+        const nameElement7 = document.createElement("p");
+        nameElement7.textContent = state;
+        nameElement7.className = "state";
+        nameElement7.id = "7";
+        div_principal7.appendChild(nameElement7);
+        document.body.appendChild(div_principal7);
+
+        const div_principal8 = document.createElement("div");
+        const nameElement8 = document.createElement("p");
+        nameElement8.textContent = street;
+        nameElement8.className = "street";
+        nameElement8.id = "8";
+        div_principal8.appendChild(nameElement8);
+        document.body.appendChild(div_principal8);
+
+        const div_principal9 = document.createElement("div");
+        const nameElement9 = document.createElement("p");
+        nameElement9.textContent = postcode;
+        nameElement9.className = "postcode";
+        nameElement9.id = "9";
+        div_principal9.appendChild(nameElement9);
+        document.body.appendChild(div_principal9);
+
+        //funcion para buscar un usuario por id, entre todos los usuarios registrados, y mostrar su información en la consola
+
+        function buscarUsuarioPorId(id) {
+            const userId = document.getElementById("input").value;
+            const elementoEncontrado = document.getElementById(` nameElemt${userId}`);
+            document.getElementById("btnbuscarusuario").addEventListener("click", function () {
+                const userId = id;
+                if (elementoEncontrado === nameElement1.id) {
+                    console.log(`Usuario encontrado: ${nameElement1.textContent}`);
+                } else if (userId === nameElement2.id) {
+                    console.log(`Usuario encontrado: ${nameElement2.textContent}`);
+                } else if (userId === nameElement3.id) {
+                    console.log(`Usuario encontrado: ${nameElement3.src}`);
+                } else if (userId === nameElement4.id) {
+                    console.log(`Usuario encontrado: ${nameElement4.textContent}`);
+                } else if (userId === nameElement5.id) {
+                    console.log(`Usuario encontrado: ${nameElement5.textContent}`);
+                } else if (userId === nameElement6.id) {
+                    console.log(`Usuario encontrado: ${nameElement6.textContent}`);
+                } else if (userId === nameElement7.id) {
+                    console.log(`Usuario encontrado: ${nameElement7.textContent}`);
+                } else if (userId === nameElement8.id) {
+                    console.log(`Usuario encontrado: ${nameElement8.textContent}`);
+                } else if (userId === nameElement9.id) {
+                    console.log(`Usuario encontrado: ${nameElement9.textContent}`);
+                } else {
+                    console.log("Usuario no encontrado");
+                }
+            });
         }
-        // const user = data.results[0];
-        // const name = `${user.name.first} ${user.name.last}`;
-        // const email = user.email;
-        // const picture = user.picture.large;
-        // const cell = user.cell;
-        // const city = user.location.city;
-        // const country = user.location.country;
-        // const state = user.location.state;
-        // const street = `${user.location.street.number} ${user.location.street.name}`;
-        // const postcode = user.location.postcode;
 
-        // const div_principal1 = document.createElement("div");
-        // const nameElement1 = document.createElement("p");
-        // nameElement1.textContent = name;
-        // nameElement1.className = "name";
-
-        // div_principal1.appendChild(nameElement1);
-        // document.body.appendChild(div_principal1);
-
-        // const div_principal2 = document.createElement("div");
-        // const nameElement2 = document.createElement("p");
-        // nameElement2.textContent = email;
-        // nameElement2.className = "email";
-
-        // div_principal2.appendChild(nameElement2);
-        // document.body.appendChild(div_principal2);
-
-        // const div_principal3 = document.createElement("div");
-        // const nameElement3 = document.createElement("img");
-        // nameElement3.textContent = picture;
-        // nameElement3.className = "picture";
-        // nameElement3.src = picture;
-        // nameElement3.alt = "User Picture";
-
-        // div_principal3.appendChild(nameElement3);
-        // document.body.appendChild(div_principal3);
-
-
-        // const div_principal4 = document.createElement("div");
-        // const nameElement4 = document.createElement("p");
-        // nameElement4.textContent = cell;
-        // nameElement4.className = "cell";
-
-        // div_principal4.appendChild(nameElement4);
-        // document.body.appendChild(div_principal4);
-
-
-        // const div_principal5 = document.createElement("div");
-        // const nameElement5 = document.createElement("p");
-        // nameElement5.textContent = city;
-        // nameElement5.className = "city";
-
-
-
-        // div_principal5.appendChild(nameElement5);
-        // document.body.appendChild(div_principal5);
-
-        // const div_principal6 = document.createElement("div");
-        // const nameElement6 = document.createElement("p");
-        // nameElement6.textContent = country;
-        // nameElement6.className = "country";
-
-
-        // div_principal6.appendChild(nameElement6);
-        // document.body.appendChild(div_principal6);
-
-        // const div_principal7 = document.createElement("div");
-        // const nameElement7 = document.createElement("p");
-        // nameElement7.textContent = state;
-        // nameElement7.className = "state";
-
-
-        // div_principal7.appendChild(nameElement7);
-        // document.body.appendChild(div_principal7);
-
-        // const div_principal8 = document.createElement("div");
-        // const nameElement8 = document.createElement("p");
-        // nameElement8.textContent = street;
-        // nameElement8.className = "street";
-
-
-        // div_principal8.appendChild(nameElement8);
-        // document.body.appendChild(div_principal8);
-
-        // const div_principal9 = document.createElement("div");
-        // const nameElement9 = document.createElement("p");
-        // nameElement9.textContent = postcode;
-        // nameElement9.className = "postcode";
-
-
-        // div_principal9.appendChild(nameElement9);
-        // document.body.appendChild(div_principal9);
-
-        // //
+        buscarUsuarioPorId("1");
+        buscarUsuarioPorId("2");
+        buscarUsuarioPorId("3");
+        buscarUsuarioPorId("4");
+        buscarUsuarioPorId("5");
+        buscarUsuarioPorId("6");
+        buscarUsuarioPorId("7");
+        buscarUsuarioPorId("8");
+        buscarUsuarioPorId("9");    
 
     } catch (error) {
         console.error(error);
     }
 
 }
-
-
-// function mostrarDatos() {
-//     fetch(url)
-//         .then(res => res.json())
-//         .then(data => {
-//             console.log(data.results[0]);
-//             const user = data.results[0];
-//             const name = `${user.name.first} ${user.name.last}`;
-//             const email = user.email;
-//             const picture = user.picture.large;
-//             const cell = user.cell;
-//             const city = user.location.city;
-//             const country = user.location.country;
-//             const state = user.location.state;
-//             const street = `${user.location.street.number} ${user.location.street.name}`;
-//             const postcode = user.location.postcode;
-
-//             const div_principal1 = document.createElement("div");
-//             const nameElement1 = document.createElement("p");
-//             nameElement1.textContent = name;
-//             nameElement1.className = "name";
-
-//             div_principal1.appendChild(nameElement1);
-//             document.body.appendChild(div_principal1);
-
-//             const div_principal2 = document.createElement("div");
-//             const nameElement2 = document.createElement("p");
-//             nameElement2.textContent = email;
-//             nameElement2.className = "email";
-
-//             div_principal2.appendChild(nameElement2);
-//             document.body.appendChild(div_principal2);
-
-//             const div_principal3 = document.createElement("div");
-//             const nameElement3 = document.createElement("img");
-//             nameElement3.textContent = picture;
-//             nameElement3.className = "picture";
-//             nameElement3.src = picture;
-//             nameElement3.alt = "User Picture";
-
-//             div_principal3.appendChild(nameElement3);
-//             document.body.appendChild(div_principal3);
-
-
-//             const div_principal4 = document.createElement("div");
-//             const nameElement4 = document.createElement("p");
-//             nameElement4.textContent = cell;
-//             nameElement4.className = "cell";
-
-//             div_principal4.appendChild(nameElement4);
-//             document.body.appendChild(div_principal4);
-
-
-//             const div_principal5 = document.createElement("div");
-//             const nameElement5 = document.createElement("p");
-//             nameElement5.textContent = city;
-//             nameElement5.className = "city";
-
-
-
-//             div_principal5.appendChild(nameElement5);
-//             document.body.appendChild(div_principal5);
-
-//             const div_principal6 = document.createElement("div");
-//             const nameElement6 = document.createElement("p");
-//             nameElement6.textContent = country;
-//             nameElement6.className = "country";
-
-
-//             div_principal6.appendChild(nameElement6);
-//             document.body.appendChild(div_principal6);
-
-//             const div_principal7 = document.createElement("div");
-//             const nameElement7 = document.createElement("p");
-//             nameElement7.textContent = state;
-//             nameElement7.className = "state";
-
-
-//             div_principal7.appendChild(nameElement7);
-//             document.body.appendChild(div_principal7);
-
-//             const div_principal8 = document.createElement("div");
-//             const nameElement8 = document.createElement("p");
-//             nameElement8.textContent = street;
-//             nameElement8.className = "street";
-
-
-//             div_principal8.appendChild(nameElement8);
-//             document.body.appendChild(div_principal8);
-
-//             const div_principal9 = document.createElement("div");
-//             const nameElement9 = document.createElement("p");
-//             nameElement9.textContent = postcode;
-//             nameElement9.className = "postcode";
-
-
-//             div_principal9.appendChild(nameElement9);
-//             document.body.appendChild(div_principal9);
-
-//         })
-// }

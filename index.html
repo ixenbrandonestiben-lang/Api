@@ -9,13 +9,18 @@
 </head>
 
 <body>
-    <div class="lateral">
+    <div class="contenedor">
+        <div class="busqueda">
 
-        <div>revisar api</div>
-        <div>
-            <img src="" alt="">
+            <input type="text" id="input" placeholder="Ingrese un número entre 1 y 10">
+            <button onclick="buscarUsuarioPorId(id)" id="btnbuscarusuario">buscar usuario por id</button>
+            
         </div>
-        <div></div>
+        <div class="registro">
+            <input type="text"  id="input2" placeholder="registrar usuarios">
+            <input type="text"  id="input3" placeholder="eliminar usuarios">
+        </div>
+
     </div>
     <button onclick="llamadaApi()" id="btn">activar</button>
     <script src="/script.js"></script>
