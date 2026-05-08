@@ -9,6 +9,11 @@ html, body {
     gap: 0;
     background: radial-gradient(circle, #0f9e20, #1000f2);
 }
+p{
+    color: white;
+    font-size: 20px;
+    text-align: center;
+}
 .card{
     display: grid;
     grid-template-columns: repeat(1, 1fr);
