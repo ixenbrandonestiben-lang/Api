@@ -1,41 +1,38 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>API usuarios</title>
+    <link rel="stylesheet" href="estilo.css">
 </head>
 
 <body>
+    <img src="img/icono.png" id="icono" alt="Icono de usuario">
 
     <h1>API generadora de usuarios</h1>
-
     <div class="contenedor">
 
-        <div class="busqueda">
+        <button id="btn">Cargar usuarios</button>
+        
+        <input type="text" id="input" placeholder="Buscar usuario...">
 
-            <input
-                type="text"
-                id="input"
-                placeholder="Buscar usuario..."
-            >
+        <button id="btnbuscarusuario"> Buscar usuario </button>
 
-            <button id="btnbuscarusuario">
-                Buscar usuario
-            </button>
+     
+    </div>
 
+    <div id="loading"></div>
+
+    <div class="cargarUsuarios">
+
+        <div class="contenedo2">
+            <div id="contenedorUsuarios"></div>
         </div>
-
-        <button id="btn">
-            Cargar usuarios
-        </button>
-
-        <div id="loading"></div>
-
-        <div id="contenedorUsuarios"></div>
-
     </div>
 
     <script src="script.js"></script>
 
 </body>
+
 </html>

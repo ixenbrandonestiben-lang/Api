@@ -1,23 +1,19 @@
 const url = "https://randomuser.me/api/?results=10";
 
 let usuarios = [];
+usuarios.className = "card";
 
-// ELEMENTOS
 const botonCargar = document.getElementById("btn");
 const botonBuscar = document.getElementById("btnbuscarusuario");
 const input = document.getElementById("input");
-const loading = document.getElementById("loading");
+const cargando = document.getElementById("loading");
 const contenedor = document.getElementById("contenedorUsuarios");
 
-
-// =========================
-// TRAER USUARIOS DE LA API
-// =========================
 async function llamadaApi() {
 
     try {
 
-        loading.textContent = "Cargando usuarios...";
+        cargando.textContent = "Cargando usuarios...";
 
         const respuesta = await fetch(url);
 
@@ -31,20 +27,16 @@ async function llamadaApi() {
 
         mostrarUsuarios(usuarios);
 
-        loading.textContent = "";
+        cargando.textContent = "";
 
     } catch (error) {
 
         console.error(error);
-        loading.textContent = "Error al cargar usuarios";
+        cargando.textContent = "Error al cargar usuarios";
 
     }
 }
 
-
-// =========================
-// MOSTRAR USUARIOS
-// =========================
 function mostrarUsuarios(lista) {
 
     contenedor.innerHTML = "";
@@ -53,8 +45,8 @@ function mostrarUsuarios(lista) {
 
         const user = lista[i];
 
-        const card = document.createElement("div");
-        card.className = "card";
+        const tarjetaUsuario = document.createElement("div");
+        tarjetaUsuario.className = "card";
 
         const nombre = document.createElement("p");
         nombre.textContent =
@@ -72,20 +64,16 @@ function mostrarUsuarios(lista) {
         const imagen = document.createElement("img");
         imagen.src = user.picture.large;
 
-        card.appendChild(imagen);
-        card.appendChild(nombre);
-        card.appendChild(email);
-        card.appendChild(ciudad);
-        card.appendChild(pais);
+        tarjetaUsuario.appendChild(imagen);
+        tarjetaUsuario.appendChild(nombre);
+        tarjetaUsuario.appendChild(email);
+        tarjetaUsuario.appendChild(ciudad);
+        tarjetaUsuario.appendChild(pais);
 
-        contenedor.appendChild(card);
+        contenedor.appendChild( tarjetaUsuario);
     }
 }
 
-
-// =========================
-// BUSCAR USUARIO
-// =========================
 function buscarUsuario() {
 
     const texto = input.value.toLowerCase();
@@ -109,14 +97,10 @@ function buscarUsuario() {
 
         mostrarUsuarios(resultado);
 
-        loading.textContent = "";
+        cargando.textContent = "";
 
     }, 700);
 }
 
-
-// =========================
-// EVENTOS
-// =========================
 botonCargar.addEventListener("click", llamadaApi);
 botonBuscar.addEventListener("click", buscarUsuario);
