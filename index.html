@@ -1,36 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/estilo.css">
+    <title>API usuarios</title>
 </head>
 
 <body>
-    <div>
-        <h1>Api generadora de usuarios</h1>
 
-    </div>
+    <h1>API generadora de usuarios</h1>
+
     <div class="contenedor">
 
         <div class="busqueda">
 
-            <input type="text" id="input" placeholder="Ingrese el ID de el usuario a buscar...">
-            <button onclick="buscarUsuarioPorId(id)" id="btnbuscarusuario">buscar usuario</button>
-            
+            <input
+                type="text"
+                id="input"
+                placeholder="Buscar usuario..."
+            >
+
+            <button id="btnbuscarusuario">
+                Buscar usuario
+            </button>
+
         </div>
-        <div class="registro">
-            <input type="text"  id="input2" placeholder="registrar usuarios">
-            <input type="text"  id="input3" placeholder="eliminar usuarios">
-        </div>
+
+        <button id="btn">
+            Cargar usuarios
+        </button>
+
+        <div id="loading"></div>
+
+        <div id="contenedorUsuarios"></div>
 
     </div>
-    <button onclick="llamadaApi()" id="btn">activar</button>
-    <script src="/script.js"></script>
 
-</div>
+    <script src="script.js"></script>
+
 </body>
-
 </html>

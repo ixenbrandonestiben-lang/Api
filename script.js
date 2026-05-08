@@ -1,107 +1,122 @@
-const url = "https://randomuser.me/api/";
+const url = "https://randomuser.me/api/?results=10";
 
+let usuarios = [];
+
+// ELEMENTOS
+const botonCargar = document.getElementById("btn");
+const botonBuscar = document.getElementById("btnbuscarusuario");
+const input = document.getElementById("input");
+const loading = document.getElementById("loading");
+const contenedor = document.getElementById("contenedorUsuarios");
+
+
+// =========================
+// TRAER USUARIOS DE LA API
+// =========================
 async function llamadaApi() {
+
     try {
-        const api = await fetch(url);
-        if (!api.ok) throw new Error("Error en la llamada a la API");
-        const data = await api.json();
-        console.log(data);
 
-        const user = data.results[0];
-        const name = `${user.name.first} ${user.name.last}`;
-        const email = user.email;
-        const picture = user.picture.large;
-        const cell = user.cell;
-        const city = user.location.city;
-        const country = user.location.country;
-        const state = user.location.state;
-        const street = `${user.location.street.number} ${user.location.street.name}`;
-        const postcode = user.location.postcode;
+        loading.textContent = "Cargando usuarios...";
 
-        const div_principal1 = document.createElement("div");
-        const nameElement1 = document.createElement("p");
-        nameElement1.textContent = name;
-        nameElement1.className = "name";
-        div_principal1.appendChild(nameElement1);
-        document.body.appendChild(div_principal1);
+        const respuesta = await fetch(url);
 
-        const div_principal2 = document.createElement("div");
-        const nameElement2 = document.createElement("p");
-        nameElement2.textContent = email;
-        nameElement2.className = "email";
-        div_principal2.appendChild(nameElement2);
-        document.body.appendChild(div_principal2);
-
-        const div_principal3 = document.createElement("div");
-        const nameElement3 = document.createElement("img");
-        nameElement3.textContent = picture;
-        nameElement3.className = "picture";
-        nameElement3.src = picture;
-        nameElement3.alt = "User Picture";
-        div_principal3.appendChild(nameElement3);
-        document.body.appendChild(div_principal3);
-
-
-        const div_principal4 = document.createElement("div");
-        const nameElement4 = document.createElement("p");
-        nameElement4.textContent = cell;
-        nameElement4.className = "cell";
-        div_principal4.appendChild(nameElement4);
-        document.body.appendChild(div_principal4);
-
-
-        const div_principal5 = document.createElement("div");
-        const nameElement5 = document.createElement("p");
-        nameElement5.textContent = city;
-        nameElement5.className = "city";
-        div_principal5.appendChild(nameElement5);
-        document.body.appendChild(div_principal5);
-
-        const div_principal6 = document.createElement("div");
-        const nameElement6 = document.createElement("p");
-        nameElement6.textContent = country;
-        nameElement6.className = "country";
-        div_principal6.appendChild(nameElement6);
-        document.body.appendChild(div_principal6);
-
-        const div_principal7 = document.createElement("div");
-        const nameElement7 = document.createElement("p");
-        nameElement7.textContent = state;
-        nameElement7.className = "state";
-        div_principal7.appendChild(nameElement7);
-        document.body.appendChild(div_principal7);
-
-        const div_principal8 = document.createElement("div");
-        const nameElement8 = document.createElement("p");
-        nameElement8.textContent = street;
-        nameElement8.className = "street";
-        div_principal8.appendChild(nameElement8);
-        document.body.appendChild(div_principal8);
-
-        const div_principal9 = document.createElement("div");
-        const nameElement9 = document.createElement("p");
-        nameElement9.textContent = postcode;
-        nameElement9.className = "postcode";
-        div_principal9.appendChild(nameElement9);
-        document.body.appendChild(div_principal9);
-
-        function buscarUsuarioPorId(id) {
-            const userId = document.getElementById("input").value;
-            const elementoEncontrado = document.getElementById(` nameElemt${userId}`);
-            document.getElementById("btnbuscarusuario").addEventListener("click", function () {
-                const userId = id;
-                if (userId == nameElement1.id) {
-                    alert(`Usuario encontrado: ${nameElement1.textContent}`);
-                } else {
-                    alert("Usuario no encontrado");
-                }
-            });
+        if (!respuesta.ok) {
+            throw new Error("Error en la API");
         }
 
-        buscarUsuarioPorId("1");   
+        const data = await respuesta.json();
+
+        usuarios = data.results;
+
+        mostrarUsuarios(usuarios);
+
+        loading.textContent = "";
 
     } catch (error) {
-        console.error(error);
-    }
 
+        console.error(error);
+        loading.textContent = "Error al cargar usuarios";
+
+    }
 }
+
+
+// =========================
+// MOSTRAR USUARIOS
+// =========================
+function mostrarUsuarios(lista) {
+
+    contenedor.innerHTML = "";
+
+    for (let i = 0; i < lista.length; i++) {
+
+        const user = lista[i];
+
+        const card = document.createElement("div");
+        card.className = "card";
+
+        const nombre = document.createElement("p");
+        nombre.textContent =
+            user.name.first + " " + user.name.last;
+
+        const email = document.createElement("p");
+        email.textContent = user.email;
+
+        const ciudad = document.createElement("p");
+        ciudad.textContent = user.location.city;
+
+        const pais = document.createElement("p");
+        pais.textContent = user.location.country;
+
+        const imagen = document.createElement("img");
+        imagen.src = user.picture.large;
+
+        card.appendChild(imagen);
+        card.appendChild(nombre);
+        card.appendChild(email);
+        card.appendChild(ciudad);
+        card.appendChild(pais);
+
+        contenedor.appendChild(card);
+    }
+}
+
+
+// =========================
+// BUSCAR USUARIO
+// =========================
+function buscarUsuario() {
+
+    const texto = input.value.toLowerCase();
+
+    loading.textContent = "Buscando...";
+
+    setTimeout(() => {
+
+        const resultado = usuarios.filter(user => {
+
+            const nombre =
+                (user.name.first + " " + user.name.last).toLowerCase();
+
+            return (
+                nombre.includes(texto) ||
+                user.email.toLowerCase().includes(texto) ||
+                user.location.city.toLowerCase().includes(texto) ||
+                user.location.country.toLowerCase().includes(texto)
+            );
+        });
+
+        mostrarUsuarios(resultado);
+
+        loading.textContent = "";
+
+    }, 700);
+}
+
+
+// =========================
+// EVENTOS
+// =========================
+botonCargar.addEventListener("click", llamadaApi);
+botonBuscar.addEventListener("click", buscarUsuario);
