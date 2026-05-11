@@ -29,7 +29,7 @@ Citio web donde podemos generar usuarios falsos para poder simular las diferente
 
     4.Ir al apartado de habrir con live server...
 
-    5.O darle click a este enlace :
+    5.O copiar este enlace y pegarlo en su navegador este enlace : https://ixenbrandonestiben-lang.github.io/Api/
 
     6.Luego de entrar a la pagina precionar el boton cargar usuarios.
 
