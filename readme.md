@@ -15,6 +15,7 @@ Citio web donde podemos generar usuarios falsos para poder simular las diferente
 
 ------------------------------------
 ![captura de pantalla de funcionamiento de la app](image-1.png)
+![Buscar usuario](image-2.png)
 
 ------------------------------------
 
